@@ -1,0 +1,17 @@
+{
+    "name": "deadpool/astra-mvc-framework",
+    "description": "Building own MVC framework",
+    "autoload": {
+        "psr-4": {
+            "Deadpool\\AstraMvcFramework\\": "src/",
+            "app\\":"./"
+        }
+    },
+    "authors": [
+        {
+            "name": "nayakOPS",
+            "email": "kunonner2002@gmail.com"
+        }
+    ],
+    "require": {}
+}
