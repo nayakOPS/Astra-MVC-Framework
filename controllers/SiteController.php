@@ -12,30 +12,23 @@ use app\core\Request;
 
 class SiteController extends Controller
 {
-    public function handleContact(Request $request)
+    public function showContactForm()
     {
-        $body = $request->getBody();
-
-        echo "<pre>";
-        var_dump($body);
-        echo "</pre>";
-        
-        return "hadnling submitted data";
-    }
-
-    public function contact()
-    {
-
-        // Render the 'contact' view
         return $this->render('contact');
     }
 
+    public function submitContactForm(Request $request)
+    {
+        $body = $request->getBody();
+        // Logic to handle contact data
+        return "Handling submitted data";
+    }
+   
     public function home()
     {
         $params = [
             'name' => "The Astra Framework"
         ];
-        // Render the 'home' view
         return $this->render('home', $params);
     }
 }

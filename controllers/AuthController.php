@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+
 use app\core\Controller;
 use app\core\Request;
 
@@ -11,19 +12,19 @@ use app\core\Request;
 
 class AuthController extends Controller
 {
-   public function login()
+   public function login(Request $request)
    {
-    //    $this->setLayout('auth');
+        if ($request->isPost()) {
+            return "Handling login data";
+        }
        return $this->render('login');
    }
 
-   public function register()
+   public function register(Request $request)
    {
-        $request = new Request();
         if($request->isPost()){
             return "Handling submitted data";
         }
-        // $this->setLayout('auth');
         return $this->render('register');
    }
 

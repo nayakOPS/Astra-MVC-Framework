@@ -3,8 +3,7 @@
 namespace app\core;
 
 /**
-    * Class Router
-    * @author deadpool <kunonner2002@gmail.com>
+    * Class Response
     * @package app\core
 */
 

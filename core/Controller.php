@@ -4,20 +4,25 @@ namespace app\core;
 use app\core\Application;
 
 /**
- * Class SiteController
+ * Class Controller
  * @package app\core
 */
 
 class Controller
 {
-    public string $layout = 'main';
+    protected string $layout = 'main';
 
-    public function setLayout($layout)
+    protected function setLayout(string $layout): void
     {
         $this->layout = $layout;
     }
-    public function render($view, $params = [])
+    protected function render(string $view, array $params = []): string
     {
-        return Application::$app->router->renderView($view, $params);
+        return Application::getInstance()->getRouter()->renderView($view, $params);
+    }
+
+    public function getLayout(): string 
+    {
+        return $this->layout;
     }
 }

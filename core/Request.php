@@ -4,8 +4,7 @@
 namespace app\core;
 
 /**
-    * Class Router
-    * @author deadpool <kunonner2002@gmail.com>
+    * Class Request
     * @package app\core
 */
 
@@ -17,46 +16,37 @@ class Request
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         //  allocate it's position, find query string start
         $position = strpos($path, '?');
-
-        if($position === false){
-            return $path;
-        }
-
-        return substr($path, 0, $position);
+        return $position === false ? $path : substr($path, 0, $position);
     }
 
     // extract the method from the request URI (GET, POST, PUT, DELETE) in lowercase
-    public function method()
+    public function getMethod(): string
     {
         return strtolower($_SERVER['REQUEST_METHOD']);  
     }
 
-    public function isGet()
+    public function isGet():bool
     {
-        return $this -> method() === 'get';
+        return $this -> getMethod() === 'get';
     }
     public function isPost()
     {
-        return $this -> method() === 'post';
+        return $this -> getMethod() === 'post';
     }
 
     public function getBody()
     {
         $body = [];
-
-        if($this -> method() === 'get'){
-            foreach($_GET as $key => $value){
-                // removing invalid characters from the request and storing in the body array
+        if ($this->isGet()) {
+            foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
-
-        if($this -> method() === 'post'){
-            foreach($_POST as $key => $value){
+        if ($this->isPost()) {
+            foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
-
         return $body;
     }
 }

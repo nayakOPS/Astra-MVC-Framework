@@ -4,42 +4,69 @@
 namespace app\core;
 
 /**
-    * Class Router
-    * @author deadpool <kunonner2002@gmail.com>
+    * Class Application
     * @package app\core
 */
 
 class Application
 {
-    public static string $ROOT_DIR;
-    public Request $request; // instance of Request for parsing the HTTP requests
-    public Router $router; // instance of Router for handling/managing the routes
-    public Response $response; // instance of Response for sending HTTP responses
-    public static Application $app; // instance of Application for initializing the core components
-    public Controller $controller; // instance of Controller for handling the application logic
+    private static ?self $instance = null; //ensures only one Application instance exists
+    private static string $rootDir;
+    private Request $request;
+    private Router $router;
+    private Response $response;
+    private ?Controller $controller = null;
 
-    public function __construct($rootPath)
+    private function __construct(string $rootDir)
     {
-        self::$ROOT_DIR = $rootPath;
-        self::$app = $this;
+        self::$rootDir = $rootDir;
         $this -> request = new Request();
         $this -> response = new Response();
         $this -> router = new Router($this -> request, $this -> response);
 
     }
 
-    // delegate the request to the router
-    public function run()
+    public static function getInstance(string $rootDir = ''): self 
     {
-        echo $this -> router -> resolve();
+        if (self::$instance === null) {
+            self::$instance = new self($rootDir);
+        }
+        return self::$instance;
     }
 
-    public function getController()
+    // delegate the request to the router
+    public function run(): void
+    {
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $e) {
+            $this->response->setStatusCode(500);
+            echo $this->router->renderView('_error', ['error' => $e->getMessage()]);
+        }
+    }
+
+    // getters and setters
+    public function getRootDir(): string
+    { 
+        return self::$rootDir; 
+    }
+    public function getRouter(): Router 
+    { 
+        return $this->router;
+    }
+    public function getRequest(): Request 
+    { 
+        return $this->request; 
+    }
+    public function getResponse(): Response 
+    { 
+        return $this->response; 
+    }
+    public function getController(): ?Controller
     {
         return $this -> controller;
     }
-
-    public function setController(Controller $controller)
+    public function setController(Controller $controller): void
     {
         $this -> controller = $controller;
     }
