@@ -9,39 +9,45 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
+            color: #444;
         }
         .navbar {
-            background-color: #333;
+            background-color: #4CAF50;
             overflow: hidden;
+            padding: 10px;
         }
         .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
+            color: white;
             text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
         }
         .navbar a:hover {
-            background-color: #ddd;
-            color: black;
+            background-color: #45a049;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
         }
         .container {
             padding: 20px;
         }
         footer {
-            background-color: #333;
-            color: #fff;
+            background-color: #4CAF50;
+            color: white;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        }
+        footer p {
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar: Shared across all pages -->
+    <!-- Navbar -->
     <div class="navbar">
         <a href="/">Home</a>
         <a href="/contact">Contact</a>
@@ -49,14 +55,20 @@
         <a href="/register">Register</a>
     </div>
 
-    <!-- Main Content: This will be replaced by the page content -->
+    <!-- Header -->
+    <div class="header">
+        <h1>Astra Framework</h1>
+        <p>A lightweight and easy-to-use MVC framework for learning and experimentation.</p>
+    </div>
+
+    <!-- Main Content -->
     <div class="container">
         {{content}}
     </div>
 
-    <!-- Footer: Shared across all pages -->
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2023 Your Company. All rights reserved.</p>
+        <p>&copy; 2023 Astra Framework. Built for learning MVC architecture.</p>
     </footer>
 </body>
 </html>

@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
-</head>
-<body>
-    <div class="container">
-        <h1>404</h1>
-        <p>Page Not Found</p>
-        <p><a href="/">Go to Homepage</a></p>
-    </div>
-</body>
-</html>
+<div class="container">
+    <h1 style="color: #4CAF50;">404</h1>
+    <p>Oops! The page you're looking for doesn't exist.</p>
+    <p><a href="/" style="color: #4CAF50; text-decoration: none;">Go to Homepage</a></p>
+</div>
