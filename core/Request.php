@@ -26,8 +26,37 @@ class Request
     }
 
     // extract the method from the request URI (GET, POST, PUT, DELETE) in lowercase
-    public function getMethod()
+    public function method()
     {
-     return strtolower($_SERVER['REQUEST_METHOD']);  
+        return strtolower($_SERVER['REQUEST_METHOD']);  
+    }
+
+    public function isGet()
+    {
+        return $this -> method() === 'get';
+    }
+    public function isPost()
+    {
+        return $this -> method() === 'post';
+    }
+
+    public function getBody()
+    {
+        $body = [];
+
+        if($this -> method() === 'get'){
+            foreach($_GET as $key => $value){
+                // removing invalid characters from the request and storing in the body array
+                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+
+        if($this -> method() === 'post'){
+            foreach($_POST as $key => $value){
+                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+
+        return $body;
     }
 }
