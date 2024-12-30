@@ -1,6 +1,0 @@
-Current Flow
-A request comes to index.php.
-The Application initializes Request and Router.
-Routes are registered using $app->router->get().
-The Router matches the request path and method to the registered routes in $routes.
-The matched callback is returned (currently printed for debugging).
