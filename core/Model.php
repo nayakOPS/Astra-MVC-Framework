@@ -38,7 +38,7 @@ abstract class Model
                     $rulename = $rule[0];
                 }
                 if($rulename === self::RULE_REQUIRED && !$value){
-                    
+                    // need to work on this
                 }
             }
         }
