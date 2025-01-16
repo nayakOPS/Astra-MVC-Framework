@@ -14,6 +14,8 @@ This document explains the flow of data through the MVC framework, detailing how
 
 ---
 
+To Run the Server: php -S localhost:8000 -t public
+
 ## **2. Entry Point: `index.php`**
 - All requests are routed through `index.php` (the entry point).
 - Responsibilities:
