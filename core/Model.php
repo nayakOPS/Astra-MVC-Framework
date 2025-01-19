@@ -3,7 +3,7 @@
 
 namespace app\core;
 
-/**
+/** 
 * Class Model
 * @package app\core
 */
@@ -77,5 +77,15 @@ abstract class Model
             self::RULE_MAX => 'Max length of this field must be {max}',
             self::RULE_MATCH => 'This field must be the same as {match}'
         ];
+    }
+
+    public function hasError($attribute)
+    {
+        return $this -> errors[$attribute] ?? false;
+    }
+
+    public function getFirstError($attribute)
+    {
+        return $this -> errors[$attribute][0] ?? false;
     }
 }

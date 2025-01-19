@@ -40,7 +40,7 @@ class RegisterModel extends Model
      * 
      * @return array Validation errors
      */
-    public function validatee(): array
+    public function validate(): array
     {
         $errors = [];
         $rules = $this->rules();
@@ -63,25 +63,4 @@ class RegisterModel extends Model
 
         return $errors;
     }
-
-
-    /**
-     * Save the user data into the database
-     * 
-     * @return bool
-     */
-   /*  public function save(): bool
-    {
-        $db = \app\core\Database::getInstance();
-
-        $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
-
-        $sql = "INSERT INTO users (fullname, email, password) VALUES (:fullname, :email, :password)";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':fullname', $this->fullname);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':password', $hashedPassword);
-
-        return $stmt->execute();
-    } */
 }
