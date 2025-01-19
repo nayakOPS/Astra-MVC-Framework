@@ -63,4 +63,6 @@ class RegisterModel extends Model
 
         return $errors;
     }
+
+    // reminder need to work on db integration and creating migration
 }
