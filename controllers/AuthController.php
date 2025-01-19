@@ -27,16 +27,12 @@ class AuthController extends Controller
     $errors = [];
 
         if ($request->isPost()) {
-            // Assign data to the model
-            $data = $request->getBody();
-            $registerModel->fullname = $data['name'] ?? '';
-            $registerModel->email = $data['email'] ?? '';
-            $registerModel->password = $data['password'] ?? '';
-            $registerModel->passwordConfirm = $data['confirm_password'] ?? '';
-
-            // Validate data
-            $errors = $registerModel->validate();
-
+            if($registerModel -> validate() && $registerModel->register()){
+                return 'success';
+            }
+            echo '<pre>';
+            var_dump($registerModel->errors);
+            echo '</pre>';
             if (empty($errors)) {
                 return "Registration successful!"; // Simulating success without saving
             }
